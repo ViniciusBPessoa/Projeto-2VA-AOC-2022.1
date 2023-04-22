@@ -1,14 +1,17 @@
-module PC (clk, rst, count);
+// Contador de prograga - PC
 
-    input clk, rst;
-    output reg [7:0] count;
+module PC (clk, nextPC, PC);
 
-   always @(posedge clk or posedge rst)
-   begin
-      if (rst)
-         count <= 8'b00000000;
-      else
-         count <= count + 1;
-   end
+	input wire clk;
+	input wire [31:0] nextPC;
+	output reg [31:0] PC;
+	
+	
 
-endmodule 
+	always @(posedge clk) begin
+		PC <= nextPC;
+	end
+
+endmodule
+
+
