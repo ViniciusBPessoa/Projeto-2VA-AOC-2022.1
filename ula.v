@@ -1,24 +1,32 @@
-// Unidade lógico aritmetica
+module ula (
+    input wire [31:0] In1,
+    input wire [31:0] In2,
+    input wire [3:0] OP,
+    output reg Zero_flag,
+    output reg [31:0] result
+);
 
-module ula (a, b, x, y, z, s);
-	input [3:0] a, b;
-	input x, y, z;
-	output [3:0] s;
-	
-	//Lógica da ULA
-	
-	wire [3:0] w0, w1, w2, w3, w4, w5, w6, w7;
-	
-	assign w0 = a + b;
-	assign w1 = a - b;
-	assign w2 = a << b;
-	assign w3 = a >> b;
-	assign w4 = a & b;
-	assign w5 = a | b;
-	assign w6 = a ^ b;
-	assign w7 = ~a;
-	
-	mux8x1_4b muxout (.i0(w0), .i1(w1), .i2(w2), .i3(w3), .i4(w4), .i5(w5), .i6(w6), .i7(w7), .s2(x), .s1(y), .s0(z), .f(s));
-
+always @(*) begin
+    case (OP)
+        4'b0011: result <= In1 << In2; //Shift Left logico 	
+		  4'b0100: result <= In1 >> In2; //Shift Right logico 
+		  4'b0100: result <= $signed(In1) >> $signed(In2); //Shift Right Arithmetic 
+        4'b0010: result <= In1 + In2; //soma
+        4'b0110: result <= In1 - In2; //sub
+        4'b0000: result <= In1 & In2; //and
+		  4'b0001: result <= In1 | In2; //or
+		  4'b1011: result <= In1 ^ In2; //xor
+        4'b1100: result <= ~(In1 | In2); //nor
+		  4'b0111: result <=  ($signed(In1) < $signed(In2)) ? 32'b00000000000000000000000000000001 : 32'b00000000000000000000000000000000; //slt
+		  4'b1111: result <= (In1 < In2) ? 32'b00000000000000000000000000000001 : 32'b00000000000000000000000000000000 ; //sltu    	
+        default: result <= 0;
+    endcase
+    
+    if (result == 0) begin
+        Zero_flag = 1'b1;
+    end else begin
+        Zero_flag = 1'b0;
+    end
+end
 
 endmodule
