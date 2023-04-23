@@ -12,7 +12,7 @@ always @(*) begin
             case (funct)
                 6'b100000: ALUControl = 4'b0010; // operação de add
                 6'b100010: ALUControl = 4'b0110; // operação de sub
-					 6'b100100: ALUControl = 4'b0000; // operação de and
+		6'b100100: ALUControl = 4'b0000; // operação de and
                 6'b100101: ALUControl = 4'b0001; // operação de or
                 6'b101010: ALUControl = 4'b0111; // operação de set on less than
                 default: ALUControl = 4'bxxxx; // don't care para instrução inválida
