@@ -7,7 +7,7 @@ module d_mem(Address, WriteData, ReadData, MemWrite, MemRead);
 	
 	parameter MEM_SIZE = 1024; // memória em si, nesse caso são 1024 posições de 32 bits = 1024 * 32 = 32768 bits ou 4 KiB 
 	reg [31:0] memoria [0 : MEM_SIZE-1];// memória em si, nesse caso são 1024 posições de 32 bits = 1024 * 32 = 32768 bits ou 4 KiB 
-	assign cabo = Address % MEM_SIZE; // 
+	assign cabo = Address % MEM_SIZE;
 	
 	always @ * begin // em qualquer alteração no cabeçalho o valor será retornado 
 	

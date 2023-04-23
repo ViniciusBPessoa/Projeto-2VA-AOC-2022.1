@@ -1,3 +1,4 @@
+
 module somador_completo (a, b, cin, s, cout);
 
     //entradas e saídas

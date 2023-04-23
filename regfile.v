@@ -8,7 +8,7 @@ module regfile (ReadAddr1, ReadAddr2 , ReadData1, ReadData2, Clock, WriteAddr, W
 	output wire [31:0] ReadData1; 
 	output wire [31:0] ReadData2;
 
-	reg [31:0] registradores [31:0]; // cria os 32 registradores 
+	reg [31:0] registradores [0:31]; // cria os 32 registradores 
 	integer i; // em caso de reset o i é o controlador de convenções para 0 nos 32 registradores
 	
 	always @ (posedge Clock or posedge Reset) begin // caso síncrono sensível a clock e reset quando em transição para 1
@@ -25,6 +25,6 @@ module regfile (ReadAddr1, ReadAddr2 , ReadData1, ReadData2, Clock, WriteAddr, W
 		end
 	end
 	
-	assign ReadData1 = (ReadAddr1 == 0) ? 32'b0 : registradores[ReadAddr1]; // de forma assincrona carrega ReadData1
-   assign ReadData2 = (ReadAddr2 == 0) ? 32'b0 : registradores[ReadAddr2]; // de forma assincrona carrega ReadData1
+	assign ReadData1 = (ReadAddr1 == 5'b0) ? 32'b0 : registradores[ReadAddr1]; // de forma assincrona carrega ReadData1
+   assign ReadData2 = (ReadAddr2 == 5'b0) ? 32'b0 : registradores[ReadAddr2]; // de forma assincrona carrega ReadData1
 endmodule  
