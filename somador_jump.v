@@ -1,3 +1,7 @@
+// Projeto 2 VA Arquitetura e Organização de Computadores - 2022.1
+// Alunos: Vinícius Bezerra, Irlan Farias, Apolo Albuquerque, joão vitor castro
+// Descrição do arquivo: Somador de 32 bits com entrada soma_pc e ex_pc, e saída po_jp
+
 module somador_jump (soma_pc, ex_pc, po_jp);
 	
 	// Declara entradas e saídas

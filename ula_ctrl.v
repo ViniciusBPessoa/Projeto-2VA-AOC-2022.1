@@ -1,3 +1,7 @@
+// Projeto 2 VA Arquitetura e Organização de Computadores - 2022.1
+// Alunos: Vinícius Bezerra, Irlan Farias, Apolo Albuquerque, joão vitor castro
+// Descrição do arquivo: Unidade de controle da ULA
+
 module ula_ctrl(
     input wire [5:0] funct,
     input wire [3:0] ALUOp,
