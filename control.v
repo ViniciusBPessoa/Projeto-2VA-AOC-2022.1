@@ -1,4 +1,7 @@
 module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUOp, RegWrite);
+
+	//Declara entradas e saídas
+
 	input wire [5:0] opcode;
 	output reg RegDst;
 	output reg Branch;
@@ -9,11 +12,13 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 	output reg RegWrite;
 	output reg [3:0] ALUOp;
 
-	always @ (opcode) begin
+	always @ (opcode) begin						// Sensível a mudança de opcode
 		
 		case (opcode)
-			
-			6'b000000: begin
+
+			// Saídas de acordo com entrada em 'opcode'
+
+			6'b000000: begin					// Instruções do tipo R
 				RegDst <= 1;
 				Branch <= 0;
 				ALUSrc <= 0;
@@ -23,7 +28,7 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 				RegWrite <= 1;
 				ALUOp <= 4'b0000;
 				end
-			6'b000100: begin
+			6'b000100: begin					// beq
 				RegDst <= 0;
 				Branch <= 1;
 				ALUSrc <= 0;
@@ -33,7 +38,7 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 				RegWrite <= 0;
 				ALUOp <= 4'b0100;
 				end
-			6'b000101: begin
+			6'b000101: begin					// bne
 				RegDst <= 0;
 				Branch <= 1;
 				ALUSrc <= 0;
@@ -43,7 +48,7 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 				RegWrite <= 0;
 				ALUOp <= 4'b0101;
 				end
-			6'b001000: begin
+			6'b001000: begin					// addi
 				RegDst <= 1;
 				Branch <= 0;
 				ALUSrc <= 1;
@@ -53,7 +58,7 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 				RegWrite <= 1;
 				ALUOp <= 4'b1000;
 				end
-			6'b001010: begin
+			6'b001010: begin					// slti
 				RegDst <= 1;
 				Branch <= 0;
 				ALUSrc <= 1;
@@ -63,7 +68,7 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 				RegWrite <= 1;
 				ALUOp <= 4'b1010;
 				end
-			6'b001011: begin
+			6'b001011: begin					// sltiu
 				RegDst <= 1;
 				Branch <= 0;
 				ALUSrc <= 1;
@@ -73,7 +78,7 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 				RegWrite <= 1;
 				ALUOp <= 4'b1011;
 				end
-			6'b001100: begin
+			6'b001100: begin					// andi
 				RegDst <= 1;
 				Branch <= 0;
 				ALUSrc <= 1;
@@ -83,7 +88,7 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 				RegWrite <= 1;
 				ALUOp <= 4'b1100;
 				end
-			6'b001101: begin
+			6'b001101: begin					// ori		
 				RegDst <= 1;
 				Branch <= 0;
 				ALUSrc <= 1;
@@ -93,7 +98,7 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 				RegWrite <= 1;
 				ALUOp <= 4'b1101;
 				end
-			6'b001110: begin
+			6'b001110: begin					// xori
 				RegDst <= 1;
 				Branch <= 0;
 				ALUSrc <= 1;
@@ -103,7 +108,7 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 				RegWrite <= 1;
 				ALUOp <= 4'b1110;
 				end
-			6'b100011: begin
+			6'b100011: begin					// lw
 				RegDst <= 0;
 				Branch <= 0;
 				ALUSrc <= 1;
@@ -113,7 +118,7 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 				RegWrite <= 1;
 				ALUOp <= 4'b0000;
 				end
-			6'b101011: begin
+			6'b101011: begin					// sw
 				RegDst <= 0;
 				Branch <= 0;
 				ALUSrc <= 1;
@@ -127,6 +132,5 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUO
 		endcase
 		
 	end
-	//seria a descricao do circuito
 	
 endmodule 
