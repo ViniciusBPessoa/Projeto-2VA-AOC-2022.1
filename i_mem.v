@@ -3,7 +3,7 @@
 // Descrição do arquivo: Memória de instrução (i_mem)
 
 module i_mem (
-  input 		 [31:0] address 						// Declara entrada que vem de PC
+	input 		 [31:0] address, 						// Declara entrada que vem de PC
   output reg [31:0] i_out 								// Declara saída
 );
 
