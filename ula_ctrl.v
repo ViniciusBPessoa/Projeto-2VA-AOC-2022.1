@@ -27,7 +27,7 @@ always @(*) begin
 					default: ALUControl = 4'bxxxx; //don't care para instrução inválida
 				endcase
 		  4'b0100: ALUControl = 4'b0110; //beq -> subtração
-		  4'b0101: ALUControl = 4'b0110; //bne -> subtração
+		  4'b0101: ALUControl = 4'b1000; //bne -> sequencia especial para bne
 		  4'b1000: ALUControl = 4'b0010; //addi -> soma
 		  4'b1010: ALUControl = 4'b0111; //slti -> Set On Less Than Immediate
 		  4'b1011: ALUControl = 4'b1111; //sltiu -> Set On Less Immediate Unsigned

@@ -8,6 +8,7 @@ module ula (
 
 always @(*) begin
     case (OP)
+		  4'b1000: result <= In1 - In2; //caso especial para bne 
         4'b0011: result <= In1 << In2; //Shift Left logico 	
 		  4'b0100: result <= In1 >> In2; //Shift Right logico 
 		  4'b0100: result <= $signed(In1) >> $signed(In2); //Shift Right Arithmetic 
@@ -22,7 +23,7 @@ always @(*) begin
         default: result <= 0;
     endcase
     
-    if (result == 0) begin
+    if if (result == 0 || op == 4b'1000 & result != 0) begin
         Zero_flag = 1'b1;
     end else begin
         Zero_flag = 1'b0;
