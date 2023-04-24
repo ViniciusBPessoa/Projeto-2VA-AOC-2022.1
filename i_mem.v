@@ -8,14 +8,15 @@ module i_mem (
 	initial begin
 	
 		$readmemb("instruction.list", mem);
-		
 	end
-
+	
+	
+	
 	always @ (address) 
 	begin
 	
 		i_out <= mem[address]; // Lê a instrução na posição indicada por address 
 		
 	end
-
+	
 endmodule 

@@ -1,4 +1,6 @@
-module MIPS (clock, reset, PCs, ULSs, d_mens);
+// Top level da aplicação
+
+module MIPS (clock, reset, PCs, ULSs, d_mens);  
 
 	input wire clock;
 	input wire reset;
@@ -12,13 +14,9 @@ module MIPS (clock, reset, PCs, ULSs, d_mens);
 	PC pc_inst (.clock(clock), .nextPC(mux_PC_soma), .PC(con_PC_i_men)); // instancia de pc
 	i_mem mem_inst (.address(con_PC_i_men), .i_out(con_i_men_reg)); // instancia de I-MEM
 	
-	assign PCs = con_PC_i_men;
-	assign ULSs = result;
-	assign d_mens = saida_d_men;
-	
 	// conjunto de cabos que comunicam ao processador as diferentes partes da instrução
 	wire [5:0] op, inst; 
-	wire [4:0] rs, rt, rd;
+	wire [4:0] rs, rt, rd, shf;
 	
 	// conjunto de cabos que ligam o processador a unidade de controle
 	wire RegDst;
@@ -43,6 +41,8 @@ module MIPS (clock, reset, PCs, ULSs, d_mens);
 	assign rt = con_i_men_reg[20:16];
 	assign est = con_i_men_reg[15:0];
 	assign inst = con_i_men_reg[5:0];
+	assign shf = con_i_men_reg [10:6];
+	
 	
 	// cabos vinculados a memoria
 	wire [31:0] soma_ou_memoria;
@@ -57,17 +57,21 @@ module MIPS (clock, reset, PCs, ULSs, d_mens);
 	wire [31:0] result;
 	wire cabo_and;
 	
+	assign PCs = con_PC_i_men;
+	assign ULSs = result;
+	assign d_mens = saida_d_men;
+	
 	// instancia da unidade de controle
-	d_mem (.Address(result), .WriteData(saida_2_reg), .ReadData(saida_d_men), .MemWrite(MemWrite), .MemRead(MemRead));
+	d_mem d_mem (.Address(result), .WriteData(saida_2_reg), .ReadData(saida_d_men), .MemWrite(MemWrite), .MemRead(MemRead));
 	
 	control unidade_de_controle (.opcode(op), .RegDst(RegDst), .Branch(Br), .ALUSrc(ALUSrc), .MemWrite(MemWrite), 
 	.MemRead(MemRead), .MentoReg(MentoReg), .ALUOp(ALUOp), .RegWrite(RegWrite));
 	
 	somador_jump somador_jp (.soma_pc(soma_somador4), .ex_pc(shift_2), .po_jp(saida_somador_jumpr));
 	
-	ula_ctrl (.funct(inst), .ALUOp(ALUOp), .ALUControl(ctl_ula_ula));
+	ula_ctrl ULA_contrl(.funct(inst), .ALUOp(ALUOp), .ALUControl(ctl_ula_ula));
 	
-	ula ula (.In1(saida_1_reg), .In2(soma_ou_memoria), .OP(ctl_ula_ula), .Zero_flag(zero_flag), .result(result));
+	ula ula (.In1(saida_1_reg), .In2(soma_ou_memoria), .OP(ctl_ula_ula), .shamt(shf), .Zero_flag(zero_flag), .result(result));
 	
 	extensor_de_sinal ex_si (.entrada(est), .saida(extendido)); // sinal extendido para pc ainda vai passar por multiplexador
 	
@@ -95,9 +99,6 @@ module MIPS (clock, reset, PCs, ULSs, d_mens);
 	assign soma_ou_memoria = ALUSrc ? extendido : saida_2_reg; // falta por para a ula
 	
 	assign soma_lw = MentoReg ? saida_d_men : result;
-
-	
-	
 
   
 endmodule 
