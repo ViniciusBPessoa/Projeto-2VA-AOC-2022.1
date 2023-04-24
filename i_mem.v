@@ -3,8 +3,8 @@
 // Descrição do arquivo: Memória de instrução (i_mem)
 
 module i_mem (
-	input 		 [31:0] address, 						// Declara entrada que vem de PC
-  output reg [31:0] i_out 								// Declara saída
+	input [31:0] address, 						// Declara entrada que vem de PC
+  	output reg [31:0] i_out 								// Declara saída
 );
 
 	reg [31:0] mem [0:1023];							// Declara um array de registradores com 1024 elementos, onde cada elemento é um registrador de 32 bits
