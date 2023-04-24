@@ -10,11 +10,11 @@ always @(*) begin
     case (ALUOp)
         4'b0000:
 		      case(funct)
-					6'b000000: ALUControl = 4'b0011; //sll -> Shift Left logico com shamt
-					6'b000010: ALUControl = 4'b0100; //srl -> Shift Right logico com shamt
-					6'b000011: ALUControl = 4'b0101; //sra -> Shift Right aritmetico com shamt
+					6'b000000: ALUControl = 4'b1001; //sll -> Shift Left logico com shamt
+					6'b000010: ALUControl = 4'b1010; //srl -> Shift Right logico com shamt
+					6'b000011: ALUControl = 4'b1101; //sra -> Shift Right aritmetico com shamt
 					6'b000100: ALUControl = 4'b0011; //sllv -> Shift Left Logical Variable
-					6'b000110: ALUControl = 4'b0100; //srlv -> Shift Right Arithmetic Variable
+					6'b000110: ALUControl = 4'b0100; //srlv -> Shift Right Logical Variable
 					6'b000111: ALUControl = 4'b0101; //srav -> Shift Right Arithmetic Variable
 					6'b100000: ALUControl = 4'b0010; //add -> soma
 					6'b100010: ALUControl = 4'b0110; //sub -> subtração
