@@ -1,15 +1,132 @@
-module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUOp, MenWrite);
+module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUOp, RegWrite);
 	input wire [5:0] opcode;
-	output wire RegDst;
-	output wire Branch;
-	output wire ALUSrc;
-	output wire MemWrite;
-	output wire MemRead;
-	output wire MentoReg;
-	output wire MenWrite;
-	output wire [3:0] ALUOp;
+	output reg RegDst;
+	output reg Branch;
+	output reg ALUSrc;
+	output reg MemWrite;
+	output reg MemRead;
+	output reg MentoReg;
+	output reg RegWrite;
+	output reg [3:0] ALUOp;
 
-	
+	always @ (opcode) begin
+		
+		case (opcode)
+			
+			6'b000000: begin
+				RegDst <= 1;
+				Branch <= 0;
+				ALUSrc <= 0;
+				MemWrite <= 0;
+				MemRead <= 0;
+				MentoReg <= 0;
+				RegWrite <= 1;
+				ALUOp <= 4'b0000;
+				end
+			6'b000100: begin
+				RegDst <= 0;
+				Branch <= 1;
+				ALUSrc <= 0;
+				MemWrite <= 0;
+				MemRead <= 0;
+				MentoReg <= 0;
+				RegWrite <= 0;
+				ALUOp <= 4'b0100;
+				end
+			6'b000101: begin
+				RegDst <= 0;
+				Branch <= 1;
+				ALUSrc <= 0;
+				MemWrite <= 0;
+				MemRead <= 0;
+				MentoReg <= 0;
+				RegWrite <= 0;
+				ALUOp <= 4'b0101;
+				end
+			6'b001000: begin
+				RegDst <= 1;
+				Branch <= 0;
+				ALUSrc <= 1;
+				MemWrite <= 0;
+				MemRead <= 0;
+				MentoReg <= 0;
+				RegWrite <= 1;
+				ALUOp <= 4'b1000;
+				end
+			6'b001010: begin
+				RegDst <= 1;
+				Branch <= 0;
+				ALUSrc <= 1;
+				MemWrite <= 0;
+				MemRead <= 0;
+				MentoReg <= 0;
+				RegWrite <= 1;
+				ALUOp <= 4'b1010;
+				end
+			6'b001011: begin
+				RegDst <= 1;
+				Branch <= 0;
+				ALUSrc <= 1;
+				MemWrite <= 0;
+				MemRead <= 0;
+				MentoReg <= 0;
+				RegWrite <= 1;
+				ALUOp <= 4'b1011;
+				end
+			6'b001100: begin
+				RegDst <= 1;
+				Branch <= 0;
+				ALUSrc <= 1;
+				MemWrite <= 0;
+				MemRead <= 0;
+				MentoReg <= 0;
+				RegWrite <= 1;
+				ALUOp <= 4'b1100;
+				end
+			6'b001101: begin
+				RegDst <= 1;
+				Branch <= 0;
+				ALUSrc <= 1;
+				MemWrite <= 0;
+				MemRead <= 0;
+				MentoReg <= 0;
+				RegWrite <= 1;
+				ALUOp <= 4'b1101;
+				end
+			6'b001110: begin
+				RegDst <= 1;
+				Branch <= 0;
+				ALUSrc <= 1;
+				MemWrite <= 0;
+				MemRead <= 0;
+				MentoReg <= 0;
+				RegWrite <= 1;
+				ALUOp <= 4'b1110;
+				end
+			6'b100011: begin
+				RegDst <= 0;
+				Branch <= 0;
+				ALUSrc <= 1;
+				MemWrite <= 0;
+				MemRead <= 1;
+				MentoReg <= 1;
+				RegWrite <= 1;
+				ALUOp <= 4'b0000;
+				end
+			6'b101011: begin
+				RegDst <= 0;
+				Branch <= 0;
+				ALUSrc <= 1;
+				MemWrite <= 1;
+				MemRead <= 0;
+				MentoReg <= 0;
+				RegWrite <= 0;
+				ALUOp <= 4'b0000;
+				end
+			
+		endcase
+		
+	end
 	//seria a descricao do circuito
 	
 endmodule 
