@@ -1,3 +1,7 @@
+// Projeto 2 VA Arquitetura e Organização de Computadores - 2022.1
+// Alunos: Vinícius Bezerra, Irlan Farias, Apolo Albuquerque, joão vitor castro
+// Descrição do arquivo: Unidade lógica e aritmética (ula)
+
 module ula (
     input wire [31:0] In1,
     input wire [31:0] In2,

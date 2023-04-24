@@ -1,3 +1,7 @@
+// Projeto 2 VA Arquitetura e Organização de Computadores - 2022.1
+// Alunos: Vinícius Bezerra, Irlan Farias, Apolo Albuquerque, joão vitor castro
+// Descrição do arquivo: Banco de registradores (regfile)
+
 module regfile (ReadAddr1, ReadAddr2 , ReadData1, ReadData2, Clock, WriteAddr, WriteData, RegWrite, Reset);// banco de registradores
 	// todos esses inputs e outputs estão explicadas na questão 
 	

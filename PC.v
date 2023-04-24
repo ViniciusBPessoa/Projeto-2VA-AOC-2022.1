@@ -1,8 +1,15 @@
 // Projeto 2 VA Arquitetura e Organização de Computadores - 2022.1
+<<<<<<< Updated upstream
 // Alunos: Vinícius Bezerra, Irlan Farias, Apolo Albuquerque, João Vitor Castro
 // Descrição do arquivo: Contador de Programa (PC)
 
 module PC (clock, nextPC, PC); // Recebe clock e o endereço da próxima instrução como entrada e retorna um novo endereço.
+=======
+// Alunos: Vinícius Bezerra, Irlan Farias, Apolo Albuquerque, joão vitor castro
+// Descrição do arquivo: Contador de Programa (PC)
+
+module PC (clock, nextPC, PC);
+>>>>>>> Stashed changes
 
 	input wire clock;
 	input wire [31:0] nextPC; // Endereço de entrada
