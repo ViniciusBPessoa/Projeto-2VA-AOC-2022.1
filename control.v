@@ -1,3 +1,7 @@
+// Projeto 2 VA Arquitetura e Organização de Computadores - 2022.1
+// Alunos: Vinícius Bezerra, Irlan Farias, Apolo Albuquerque, joão vitor castro
+// Descrição do arquivo: Unidade de Controle (control))
+
 module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUOp, RegWrite);
 
 	//Declara entradas e saídas
