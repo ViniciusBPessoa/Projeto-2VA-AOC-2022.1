@@ -1,4 +1,4 @@
-module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg);
+module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg, ALUOp, MenWrite);
 	input wire [5:0] opcode;
 	output wire RegDst;
 	output wire Branch;
@@ -6,6 +6,8 @@ module control(opcode, RegDst, Branch, ALUSrc, MemWrite, MemRead, MentoReg);
 	output wire MemWrite;
 	output wire MemRead;
 	output wire MentoReg;
+	output wire MenWrite;
+	output wire [3:0] ALUOp;
 
 	
 	//seria a descricao do circuito
