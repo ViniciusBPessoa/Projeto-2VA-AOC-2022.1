@@ -25,10 +25,10 @@ module MIPS (clock, reset, PCs, ULSs, d_mens);  // Declaração dos inputs e out
 	wire RegDst; 
 	wire Br; 
 	wire ALUSrc; 
-	wire MemWrite;
-	wire MemRead;
-	wire MentoReg;
-	wire RegWrite;
+	wire MemWrite; 
+	wire MemRead; 
+	wire MentoReg; 
+	wire RegWrite; 
 	wire [3:0] ALUOp; 
 	// Fim das saidas da unidade de controle
 	
